@@ -1,7 +1,7 @@
-
 # The class cannot be named by Pascal or camel case.
 # If it is not used, the corresponding structure will not be set,
 # and it will not be read naturally.
+superCode: 123456
 serverversion: 1.0.0
 #---------------Infrastructure configuration---------------------#
 etcd:
@@ -77,7 +77,7 @@ rpcport:
   openImFriendPort: [ 10200 ]
   openImOfflineMessagePort: [ 10300 ]
   openImOnlineRelayPort: [ 10400 ]
-  openImGroupPort: [ 10500  ]
+  openImGroupPort: [ 10500 ]
   openImAuthPort: [ 10600 ]
   openImPushPort: [ 10700 ]
 
@@ -125,8 +125,8 @@ push:
     masterSecret: 66e5f309e032c68cc668c28a
     pushUrl: "https://api.jpush.cn/v3/push"
 manager:
-  appManagerUid: ["openIM123456","openIM654321"]
-  secrets: ["openIM1","openIM2"]
+  appManagerUid: [ "openIM123456","openIM654321" ]
+  secrets: [ "openIM1","openIM2" ]
 
 secret: tuoyun
 
