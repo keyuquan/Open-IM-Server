@@ -2,17 +2,17 @@ version: "3"
 #fixme  Clone openIM Server project before using docker-compose,project address：https://github.com/OpenIMSDK/Open-IM-Server.git
 
 services:
-  mysql:
-    image: mysql:5.7
-    ports:
-      - 3306:3306
-    container_name: mysql
-    volumes:
-      - ./components/mysql/data:/var/lib/mysql
-      - /etc/localtime:/etc/localtime
-    environment:
-      MYSQL_ROOT_PASSWORD: openIM
-    restart: always
+#  mysql:
+#    image: mysql:5.7
+#    ports:
+#      - 3306:3306
+#    container_name: mysql
+#    volumes:
+#      - ./components/mysql/data:/var/lib/mysql
+#      - /etc/localtime:/etc/localtime
+#    environment:
+#      MYSQL_ROOT_PASSWORD: openIM
+#    restart: always
 
   mongodb:
     image: mongo:4.0
@@ -25,21 +25,21 @@ services:
       TZ: Asia/Shanghai
     restart: always
 
-  redis:
-    image: redis
-    ports:
-      - 6379:6379
-    container_name: redis
-    volumes:
-      - ./components/redis/data:/data
-      #redis config file
-      #- ./components/redis/config/redis.conf:/usr/local/redis/config/redis.conf
-    environment:
-      TZ: Asia/Shanghai
-    restart: always
-    sysctls:
-      net.core.somaxconn: 1024
-    command: redis-server --requirepass openIM --appendonly yes
+#  redis:
+#    image: redis
+#    ports:
+#      - 6379:6379
+#    container_name: redis
+#    volumes:
+#      - ./components/redis/data:/data
+#      #redis config file
+#      #- ./components/redis/config/redis.conf:/usr/local/redis/config/redis.conf
+#    environment:
+#      TZ: Asia/Shanghai
+#    restart: always
+#    sysctls:
+#      net.core.somaxconn: 1024
+#    command: redis-server --requirepass openIM --appendonly yes
 
 
   zookeeper:

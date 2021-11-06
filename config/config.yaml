@@ -11,7 +11,7 @@ etcd:
 mysql:
   dbMysqlAddress: [ 127.0.0.1:3306 ]
   dbMysqlUserName: root
-  dbMysqlPassword: openIM
+  dbMysqlPassword: FFS0PG3pBWZ3dji6Yn
   dbMysqlDatabaseName: openIM
   dbTableName: eMsg
   dbMsgTableNum: 1
@@ -35,7 +35,7 @@ redis:
   dbMaxIdle: 128
   dbMaxActive: 0
   dbIdleTimeout: 120
-  dbPassWord: openIM
+  dbPassWord: vyTB3bHklcHZnjx
 
 kafka:
   ws2mschat:
