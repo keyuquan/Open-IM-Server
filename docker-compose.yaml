@@ -24,6 +24,11 @@ services:
     environment:
       TZ: Asia/Shanghai
     restart: always
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
 
 #  redis:
 #    image: redis
@@ -52,19 +57,28 @@ services:
     environment:
       TZ: Asia/Shanghai
     restart: always
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
 
 
   kafka:
     image: wurstmeister/kafka
     container_name: kafka
     restart: always
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
     environment:
       TZ: Asia/Shanghai
       KAFKA_BROKER_ID: 0
       KAFKA_ZOOKEEPER_CONNECT: 127.0.0.1:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-    network_mode: "host"
     depends_on:
       - zookeeper
 
@@ -80,6 +94,11 @@ services:
     environment:
       ETCDCTL_API: 3
     restart: always
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
     command: /usr/local/bin/etcd --name etcd0 --data-dir /etcd-data --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 --listen-peer-urls http://0.0.0.0:2380 --initial-advertise-peer-urls http://0.0.0.0:2380 --initial-cluster etcd0=http://0.0.0.0:2380 --initial-cluster-token tkn --initial-cluster-state new
 
 
@@ -121,9 +140,17 @@ services:
       - mongodb
 #      - redis
       - etcd
-    network_mode: "host"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
     logging:
       driver: json-file
       options:
         max-size: "1g"
         max-file: "2"
+
+networks:
+  traefik:
+    external: true
