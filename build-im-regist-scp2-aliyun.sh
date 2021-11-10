@@ -66,6 +66,9 @@ services:
       context: .
 #      dockerfile: deploy.Dockerfile
     container_name: open-im-server
+    ports:
+      - "10000:10000"
+      - "17778:17778"
     volumes:
       - ./logs:/Open-IM-Server/logs
       - ./script:/Open-IM-Server/script
