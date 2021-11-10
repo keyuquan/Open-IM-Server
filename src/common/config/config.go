@@ -3,14 +3,9 @@ package config
 import (
 	"io/ioutil"
 
-	"os"
-
-	"path/filepath"
-	"runtime"
-
 	"gopkg.in/yaml.v3"
+	"os"
 )
-
 
 var Config config
 

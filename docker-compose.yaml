@@ -14,21 +14,21 @@ services:
 #      MYSQL_ROOT_PASSWORD: openIM
 #    restart: always
 
-  mongodb:
-    image: mongo:4.0
-    ports:
-      - 27017:27017
-    container_name: mongo
-    volumes:
-      - ./components/mongodb/data:/data/db
-    environment:
-      TZ: Asia/Shanghai
-    restart: always
-    networks:
-      - traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
+#  mongodb:
+#    image: mongo:4.0
+#    ports:
+#      - 27017:27017
+#    container_name: mongo
+#    volumes:
+#      - ./components/mongodb/data:/data/db
+#    environment:
+#      TZ: Asia/Shanghai
+#    restart: always
+#    networks:
+#      - traefik
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik"
 
 #  redis:
 #    image: redis
@@ -47,60 +47,59 @@ services:
 #    command: redis-server --requirepass openIM --appendonly yes
 
 
-  zookeeper:
-    image: wurstmeister/zookeeper
-    ports:
-      - 2181:2181
-    container_name: zookeeper
-    volumes:
-      - /etc/localtime:/etc/localtime
-    environment:
-      TZ: Asia/Shanghai
-    restart: always
-    networks:
-      - traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
-
-
-  kafka:
-    image: wurstmeister/kafka
-    container_name: kafka
-    restart: always
-    networks:
-      - traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
-    environment:
-      TZ: Asia/Shanghai
-      KAFKA_BROKER_ID: 0
-      KAFKA_ZOOKEEPER_CONNECT: 127.0.0.1:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-    depends_on:
-      - zookeeper
-
-  etcd:
-    image: quay.io/coreos/etcd
-    ports:
-      - 2379:2379
-      - 2380:2380
-    container_name: etcd
-    volumes:
-      - /etc/timezone:/etc/timezone
-      - /etc/localtime:/etc/localtime
-    environment:
-      ETCDCTL_API: 3
-    restart: always
-    networks:
-      - traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
-    command: /usr/local/bin/etcd --name etcd0 --data-dir /etcd-data --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 --listen-peer-urls http://0.0.0.0:2380 --initial-advertise-peer-urls http://0.0.0.0:2380 --initial-cluster etcd0=http://0.0.0.0:2380 --initial-cluster-token tkn --initial-cluster-state new
-
+#  zookeeper:
+#    image: wurstmeister/zookeeper
+#    ports:
+#      - 2181:2181
+#    container_name: zookeeper
+#    volumes:
+#      - /etc/localtime:/etc/localtime
+#    environment:
+#      TZ: Asia/Shanghai
+#    restart: always
+#    networks:
+#      - traefik
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik"
+#
+#  kafka:
+#    image: wurstmeister/kafka
+#    container_name: kafka
+#    restart: always
+#    networks:
+#      - traefik
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik"
+#    environment:
+#      TZ: Asia/Shanghai
+#      KAFKA_BROKER_ID: 0
+#      KAFKA_ZOOKEEPER_CONNECT: 127.0.0.1:2181
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+#    depends_on:
+#      - zookeeper
+#
+#  etcd:
+#    image: quay.io/coreos/etcd
+#    ports:
+#      - 2379:2379
+#      - 2380:2380
+#    container_name: etcd
+#    volumes:
+#      - /etc/timezone:/etc/timezone
+#      - /etc/localtime:/etc/localtime
+#    environment:
+#      ETCDCTL_API: 3
+#    restart: always
+#    networks:
+#      - traefik
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik"
+#    command: /usr/local/bin/etcd --name etcd0 --data-dir /etcd-data --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 --listen-peer-urls http://0.0.0.0:2380 --initial-advertise-peer-urls http://0.0.0.0:2380 --initial-cluster etcd0=http://0.0.0.0:2380 --initial-cluster-token tkn --initial-cluster-state new
+#
 
   #fixme-----build from dockerfile---------
   # open-im-server:
@@ -128,18 +127,15 @@ services:
 
   #fixme----build from docker hub------
   open-im-server:
-    image: lyt1123/open_im_server
+    image: open_im_server
+    build:
+      context: .
+      dockerfile: deploy.Dockerfile
     container_name: open-im-server
     volumes:
       - ./logs:/Open-IM-Server/logs
       - ./config/config.yaml:/Open-IM-Server/config/config.yaml
     restart: always
-    depends_on:
-      - kafka
-#      - mysql
-      - mongodb
-#      - redis
-      - etcd
     networks:
       - traefik
     labels:
