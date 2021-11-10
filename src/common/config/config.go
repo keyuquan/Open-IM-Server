@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"io/ioutil"
 
 	"os"
@@ -155,7 +156,12 @@ type config struct {
 
 func init() {
 	path, _ := os.Getwd()
-	bytes, err := ioutil.ReadFile(path + "/config/config.yaml")
+	enPath := os.Getenv("CONFIG_FILE")
+	if enPath == "" {
+		enPath = path + "/config/config.yaml"
+	}
+	fmt.Println("s输出的地址是：" + enPath)
+	bytes, err := ioutil.ReadFile(enPath)
 	if err != nil {
 		panic(err)
 	}

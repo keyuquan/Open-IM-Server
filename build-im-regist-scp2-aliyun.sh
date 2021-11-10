@@ -62,8 +62,8 @@ version: '3'
 services:
   open-im-server:
     image: open_im_server
-    build:
-      context: .
+    build: .
+#      context: .
 #      dockerfile: deploy.Dockerfile
     container_name: open-im-server
     ports:
@@ -75,6 +75,8 @@ services:
       - ./bin:/Open-IM-Server/bin
       - ./config:/Open-IM-Server/config
     restart: always
+    environment:
+      - CONFIG_FILE: ../config/config.yaml
     networks:
       - traefik
     labels:
@@ -92,7 +94,7 @@ networks:
 EOF
 
 echo "压缩文件"
-tar -zcvf .build/open-im-server.tgz bin/* script/* .build/Dockerfile .build/docker-compose.yml config/VERSION config/config.yaml
+tar -zcvf .build/open-im-server.tgz bin/* script/* .build/Dockerfile .build/docker-compose.yml config/*
 #rm registerserver
 echo "scp 文件到服务器"
 scp .build/open-im-server.tgz aliyun-stone:/root/open-im-server
