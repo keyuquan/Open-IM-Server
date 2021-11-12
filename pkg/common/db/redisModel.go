@@ -93,10 +93,14 @@ func (d *DataBases) SetUserIDAndPlatform(userID, platformClass, value string, tt
 
 //Check exists userid and platform class from redis
 func (d *DataBases) ExistsUserIDAndPlatform(userID, platformClass string) (interface{}, error) {
-	return 1, nil
+	key := userID + platformClass
+	exists, err := d.Exec("EXISTS", key)
+	return exists, err
 }
 
 //Get platform class Token
 func (d *DataBases) GetPlatformToken(userID, platformClass string) (interface{}, error) {
-	return 1, nil
+	key := userID + platformClass
+	token, err := d.Exec("GET", key)
+	return token, err
 }
