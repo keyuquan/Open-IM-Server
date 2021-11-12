@@ -60,7 +60,7 @@ func init() {
 				redis.DialWriteTimeout(time.Duration(1000)*time.Millisecond),
 				redis.DialConnectTimeout(time.Duration(1000)*time.Millisecond),
 				redis.DialDatabase(0),
-				redis.DialPassword("vyTB3bHklcHZnjx"),
+				redis.DialPassword(config.Config.Redis.DBPassWord),
 			)
 		},
 	}
