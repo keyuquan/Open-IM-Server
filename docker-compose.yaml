@@ -1,16 +1,10 @@
 version: '3'
 services:
   open-im-server:
-    image: open_im_server
-    build: .
-    #      context: .
-    #      dockerfile: deploy.Dockerfile
+    image: lyt1123/open_im_server
     container_name: open-im-server
     volumes:
       - ./logs:/Open-IM-Server/logs
-      - ./script:/Open-IM-Server/script
-      - ./bin:/Open-IM-Server/bin
-      - ./config:/Open-IM-Server/config
       - ./config/config.yaml:/Open-IM-Server/config/config.yaml
     restart: always
     networks:
