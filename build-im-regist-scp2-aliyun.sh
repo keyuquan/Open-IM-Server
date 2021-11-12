@@ -103,17 +103,17 @@ networks:
 EOF
 
 echo "压缩文件"
-tar -zcvf .build/open-im-server.tgz bin/* script/* .build/Dockerfile .build/docker-compose.yml config/*
+tar -zcvf .build/Open-IM-Server.tgz bin/* script/* .build/Dockerfile .build/docker-compose.yml config/*
 #rm registerserver
 echo "scp 文件到服务器"
-scp .build/open-im-server.tgz aliyun-stone:/root/open-im-server
+scp .build/Open-IM-Server.tgz aliyun-stone:/root/Open-IM-Server
 
 # run.sh
 echo "生成 run.sh"
 cat>.build/run.sh<<EOF
-tar zxvf open-im-server.tgz -C ./
+tar zxvf Open-IM-Server.tgz -C ./
 mv .build/* ./
-docker-compose down && docker-compose up -d --build  && rm open-im-server.tgz
+docker-compose down && docker-compose up -d --build  && rm Open-IM-Server.tgz
 EOF
 
 #echo "更新最新版本库"
@@ -126,4 +126,4 @@ echo "完事"
 
 chmod +x .build/run.sh
 echo "scp run.sh 文件到服务器"
-scp .build/run.sh aliyun-stone:/root/open-im-server
+scp .build/run.sh aliyun-stone:/root/Open-IM-Server
