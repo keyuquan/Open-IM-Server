@@ -44,4 +44,4 @@ echo "完事"
 
 chmod +x .build/run.sh
 echo "scp run.sh 文件到服务器"
-scp .build/run.sh aliyun-stone:/root/Open-IM-Server
+scp ./run.sh aliyun-stone:/root/Open-IM-Server
