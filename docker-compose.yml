@@ -13,8 +13,6 @@ services:
       - ./config:/Open-IM-Server/config
       - ./config/config.yaml:/Open-IM-Server/config/config.yaml
     restart: always
-    environment:
-      - CONFIG_FILE=../config/config.yaml
     networks:
       - traefik
     labels:

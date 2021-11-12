@@ -5,10 +5,10 @@ serverversion: 1.0.3
 #---------------Infrastructure configuration---------------------#
 etcd:
   etcdSchema: openIM
-  etcdAddr: [ 8.134.59.113:2379 ]
+  etcdAddr: [ etcd:2379 ]
 
 mysql:
-  dbMysqlAddress: [ 8.134.59.113:3306 ]
+  dbMysqlAddress: [ mysql8:3306 ]
   dbMysqlUserName: root
   dbMysqlPassword: FFS0PG3pBWZ3dji6Yn
   dbMysqlDatabaseName: openIM
@@ -19,7 +19,7 @@ mysql:
   dbMaxLifeTime: 120
 
 mongo:
-  dbAddress: [ 8.134.59.113:27017 ]
+  dbAddress: [ mongo:27017 ]
   dbDirect: false
   dbTimeout: 10
   dbDatabase: openIM
@@ -30,7 +30,7 @@ mongo:
   dbRetainChatRecords: 7
 
 redis:
-  dbAddress: 8.134.59.113:6379
+  dbAddress: redis:6379
   dbMaxIdle: 128
   dbMaxActive: 0
   dbIdleTimeout: 120
@@ -38,10 +38,10 @@ redis:
 
 kafka:
   ws2mschat:
-    addr: [ 8.134.59.113:9092 ]
+    addr: [ kafka:9092 ]
     topic: "ws2ms_chat"
   ms2pschat:
-    addr: [ 8.134.59.113:9092 ]
+    addr: [ kafka:9092 ]
     topic: "ms2ps_chat"
   consumergroupid:
     msgToMongo: mongo
@@ -74,9 +74,9 @@ credential:
 rpcport:
   openImUserPort: [ 10100 ]
   openImFriendPort: [ 10200 ]
-  openImOfflineMessagePort: [ 10300]
+  openImOfflineMessagePort: [ 10300 ]
   openImOnlineRelayPort: [ 10400 ]
-  openImGroupPort: [ 10500  ]
+  openImGroupPort: [ 10500 ]
   openImAuthPort: [ 10600 ]
   openImPushPort: [ 10700 ]
 
@@ -124,8 +124,8 @@ push:
     masterSecret: 02204efe3f3832947a236ee5
     pushUrl: "https://api.jpush.cn/v3/push"
 manager:
-  appManagerUid: ["openIM123456","openIM654321"]
-  secrets: ["openIM1","openIM2"]
+  appManagerUid: [ "1","2" ]
+  secrets: [ "openIM1","openIM2" ]
 
 secret: tuoyun
 
