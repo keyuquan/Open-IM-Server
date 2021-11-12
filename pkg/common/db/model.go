@@ -45,7 +45,8 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
+	println(config.Config.Redis.DBAddress)
+	println(config.Config.Redis.DBPassWord)
 	// redis pool init
 	DB.redisPool = &redis.Pool{
 		MaxIdle:     config.Config.Redis.DBMaxIdle,
