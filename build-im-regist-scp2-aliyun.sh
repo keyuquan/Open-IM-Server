@@ -66,9 +66,6 @@ services:
 #      context: .
 #      dockerfile: deploy.Dockerfile
     container_name: open-im-server
-    ports:
-      - "10000:10000"
-      - "17778:17778"
     volumes:
       - ./logs:/Open-IM-Server/logs
       - ./script:/Open-IM-Server/script
@@ -76,12 +73,24 @@ services:
       - ./config:/Open-IM-Server/config
     restart: always
     environment:
-      - CONFIG_FILE: ../config/config.yaml
+      - CONFIG_FILE=../config/config.yaml
     networks:
       - traefik
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik"
+      # Entry Point for https
+      - "traefik.http.routers.im-api.entrypoints=http"
+      - "traefik.http.routers.im-api.rule=Host(\`appstone.top\`) && PathPrefix(\`/imapi\`)"
+      - "traefik.http.routers.im-api.middlewares=im-api-stripPrefix@file"
+      - "traefik.http.routers.im-api.service=im-api-service"
+      - "traefik.http.services.im-api-service.loadbalancer.server.port=10000"
+      # websocket
+      - "traefik.http.routers.im-api-ws.entrypoints=http"
+      - "traefik.http.routers.im-api-ws.rule=Host(\`appstone.top\`) && PathPrefix(\`/imapiws\`)"
+      - "traefik.http.routers.im-api-ws.middlewares=im-api-ws-stripPrefix@file"
+      - "traefik.http.routers.im-api-ws.service=im-api-ws-websocket"
+      - "traefik.http.services.im-api-ws-websocket.loadbalancer.server.port=17778"
     logging:
       driver: json-file
       options:
