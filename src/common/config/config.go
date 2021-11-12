@@ -1,17 +1,12 @@
 package config
 
 import (
-	"fmt"
 	"io/ioutil"
 
 	"os"
 
-	_ "path/filepath"
-	_ "runtime"
-
 	"gopkg.in/yaml.v3"
 )
-
 
 var Config config
 
@@ -156,12 +151,7 @@ type config struct {
 
 func init() {
 	path, _ := os.Getwd()
-	enPath := os.Getenv("CONFIG_FILE")
-	if enPath == "" {
-		enPath = path + "/config/config.yaml"
-	}
-	fmt.Println("s输出的地址是：" + enPath)
-	bytes, err := ioutil.ReadFile(enPath)
+	bytes, err := ioutil.ReadFile(path + "/config/config.yaml")
 	if err != nil {
 		panic(err)
 	}
