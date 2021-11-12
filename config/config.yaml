@@ -11,7 +11,7 @@ mysql:
   dbMysqlAddress: [ mysql8:3306 ]
   dbMysqlUserName: root
   dbMysqlPassword: FFS0PG3pBWZ3dji6Yn
-  dbMysqlDatabaseName: friend
+  dbMysqlDatabaseName: openIM
   dbTableName: eMsg
   dbMsgTableNum: 1
   dbMaxOpenConns: 20
