@@ -138,7 +138,7 @@ multiloginpolicy:
 tokenpolicy:
   accessSecret: "open_im_server"
   # Token effective time day as a unit
-  accessExpire: 7
+  accessExpire: 365
 
 messagecallback:
   callbackSwitch: false
