@@ -131,7 +131,7 @@ secret: tuoyun
 
 multiloginpolicy:
   onlyOneTerminalAccess: false
-  mobileAndPCTerminalAccessButOtherTerminalKickEachOther: true
+  mobileAndPCTerminalAccessButOtherTerminalKickEachOther: false
   allTerminalAccess: false
 
 #token config
