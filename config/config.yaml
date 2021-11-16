@@ -11,7 +11,7 @@ mysql:
   dbMysqlAddress: [ mysql8:3306 ]
   dbMysqlUserName: root
   dbMysqlPassword: FFS0PG3pBWZ3dji6Yn
-  dbMysqlDatabaseName: openIM
+  dbMysqlDatabaseName: friend
   dbTableName: eMsg
   dbMsgTableNum: 1
   dbMaxOpenConns: 20
@@ -131,7 +131,7 @@ secret: tuoyun
 
 multiloginpolicy:
   onlyOneTerminalAccess: false
-  mobileAndPCTerminalAccessButOtherTerminalKickEachOther: false
+  mobileAndPCTerminalAccessButOtherTerminalKickEachOther: true
   allTerminalAccess: false
 
 #token config
