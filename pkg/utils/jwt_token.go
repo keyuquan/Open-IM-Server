@@ -82,7 +82,7 @@ func ParseToken(tokensString string) (claims *Claims, err error) {
 		return nil, err
 	}
 	exists := existsInterface.(int64)
-	//get config multi login policy
+	////get config multi login policy
 	if config.Config.MultiLoginPolicy.OnlyOneTerminalAccess {
 		//OnlyOneTerminalAccess policy need to check all terminal
 		//When only one end is allowed to log in, there is a situation that needs to be paid attention to. After PC login,
@@ -108,18 +108,18 @@ func ParseToken(tokensString string) (claims *Claims, err error) {
 			}
 		}
 	}
-	// config.Config.MultiLoginPolicy.MobileAndPCTerminalAccessButOtherTerminalKickEachOther == true
-	// or  PC/Mobile validate success
-	// final check
-	if exists == 1 {
-		res, err := MakeTheTokenInvalid(claims, Platform2class[claims.Platform])
-		if err != nil {
-			return nil, err
-		}
-		if res {
-			return nil, TokenInvalid
-		}
-	}
+	//// config.Config.MultiLoginPolicy.MobileAndPCTerminalAccessButOtherTerminalKickEachOther == true
+	//// or  PC/Mobile validate success
+	//// final check
+	//if exists == 1 {
+	//	res, err := MakeTheTokenInvalid(claims, Platform2class[claims.Platform])
+	//	if err != nil {
+	//		return nil, err
+	//	}
+	//	if res {
+	//		return nil, TokenInvalid
+	//	}
+	//}
 	return claims, nil
 }
 
