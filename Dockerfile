@@ -1,19 +1,3 @@
-FROM golang as build
-
-# go mod Installation source, container environment variable addition will override the default variable value
-ENV GO111MODULE=on
-ENV GOPROXY=https://goproxy.cn,direct
-
-# Set up the working directory
-WORKDIR /Open-IM-Server
-# add all files to the container
-COPY . .
-
-WORKDIR /Open-IM-Server/script
-RUN chmod +x *.sh
-
-RUN /bin/sh -c ./build_all_service.sh
-
 #Blank image Multi-Stage Build
 FROM ubuntu
 
