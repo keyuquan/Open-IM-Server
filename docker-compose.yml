@@ -2,6 +2,7 @@ version: '3'
 services:
   open-im-server:
     image: open_im_server
+    build: .
     container_name: open-im-server
     volumes:
       - ./logs:/Open-IM-Server/logs
