@@ -1,7 +1,7 @@
 version: '3'
 services:
   open-im-server:
-    image: lyt1123/open_im_server
+    image: open_im_server
     container_name: open-im-server
     volumes:
       - ./logs:/Open-IM-Server/logs
