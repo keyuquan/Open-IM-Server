@@ -35,13 +35,13 @@ echo "写入版本号"
 echo "$1" > ./config/VERSION
 
 echo "压缩文件"
-tar -zcvf .build/Open-IM-Server.tgz bin/* script/*  ./Dockerfile  ./docker-compose.yml config/*  cmd/*  ./go.mod
+tar -zcvf .build/Open-IM-Server.tgz bin/* script/*  ./Dockerfile  ./docker-compose.yml config/*
 #rm registerserver
 echo "scp 文件到服务器"
-scp .build/Open-IM-Server.tgz aliyun-stone:/root/Open-IM-Server
+#scp .build/Open-IM-Server.tgz aliyun-stone:/root/Open-IM-Server
 
 echo "完事"
 
 chmod +x ./run.sh
 echo "scp run.sh 文件到服务器"
-scp ./run.sh aliyun-stone:/root/Open-IM-Server
+#scp ./run.sh aliyun-stone:/root/Open-IM-Server
