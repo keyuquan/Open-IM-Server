@@ -93,9 +93,9 @@ func (d *DataBases) SetUserIDAndPlatform(userID, platformClass, value string, tt
 
 //Check exists userid and platform class from redis
 func (d *DataBases) ExistsUserIDAndPlatform(userID, platformClass string) (interface{}, error) {
-	//key := userID + platformClass
-	//exists, err := d.Exec("EXISTS", key)
-	return 1, nil
+	key := userID + platformClass
+	exists, err := d.Exec("EXISTS", key)
+	return exists, err
 }
 
 //Get platform class Token
