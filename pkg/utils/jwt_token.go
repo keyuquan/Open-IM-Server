@@ -149,9 +149,9 @@ func ParseRedisInterfaceToken(redisToken interface{}) (*Claims, error) {
 
 //Validation token, false means failure, true means successful verification
 func VerifyToken(token, uid string) bool {
-	//claims, err := ParseToken(token)
-	//if err != nil || claims.UID != uid {
-	//	return false
-	//}
+	claims, err := ParseToken(token)
+	if err != nil || claims.UID != uid {
+		return false
+	}
 	return true
 }
