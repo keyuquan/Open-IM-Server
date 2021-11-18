@@ -54,13 +54,13 @@ func getClaimFromToken(tokensString string) (*Claims, error) {
 	if err != nil {
 		if ve, ok := err.(*jwt.ValidationError); ok {
 			if ve.Errors&jwt.ValidationErrorMalformed != 0 {
-				log.ErrorByKv("Token verify failed==", "", "ValidationErrorMalformed-----")
+				log.InfoByKv("Token verify failed==", "", "ValidationErrorMalformed-----")
 				return nil, TokenMalformed
 			} else if ve.Errors&jwt.ValidationErrorExpired != 0 {
-				log.ErrorByKv("Token verify failed==", "", "ValidationErrorExpired-----")
+				log.InfoByKv("Token verify failed==", "", "ValidationErrorExpired-----")
 				return nil, TokenExpired
 			} else if ve.Errors&jwt.ValidationErrorNotValidYet != 0 {
-				log.ErrorByKv("Token verify failed==", "", "ValidationErrorNotValidYet-----")
+				log.InfoByKv("Token verify failed==", "", "ValidationErrorNotValidYet-----")
 				return nil, TokenNotValidYet
 			} else {
 				return nil, TokenUnknown
