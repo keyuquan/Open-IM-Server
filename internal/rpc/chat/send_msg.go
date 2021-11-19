@@ -46,7 +46,11 @@ func (rpc *rpcChat) UserSendMsg(_ context.Context, pb *pbChat.UserSendMsgReq) (*
 	log.NewDebug(pb.OperationID, "rpc sendMsg come here", pb.String())
 	//if !utils.VerifyToken(pb.Token, pb.SendID) {
 	//	return returnMsg(&replay, pb, http.StatusUnauthorized, "token validate err,not authorized", "", 0)
-
+	if len(pb.SenderFaceURL) == 0 {
+		senderInfo, _ := im_mysql_model.FindUserByUID(pb.SendID)
+		pb.SenderFaceURL = senderInfo.Icon
+		pb.SenderNickName = senderInfo.Name
+	}
 	err := im_mysql_model.FindRelationshipFromBlackList(pb.RecvID, pb.SendID)
 	if err == nil {
 		return returnMsg(&replay, pb, 203, "黑名单拒收", "", 0)
