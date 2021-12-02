@@ -68,6 +68,7 @@ services:
     container_name: open-im-server
     volumes:
       - ./logs:/Open-IM-Server/logs
+      - ./config/config.yaml:/Open-IM-Server/config/config.yaml
       - ./script:/Open-IM-Server/script
       - ./bin:/Open-IM-Server/bin
       - ./config:/Open-IM-Server/config
