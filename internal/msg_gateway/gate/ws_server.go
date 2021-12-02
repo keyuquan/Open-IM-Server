@@ -145,6 +145,8 @@ func (ws *WServer) getUserUid(conn *UserConn) string {
 func (ws *WServer) headerCheck(w http.ResponseWriter, r *http.Request) bool {
 	status := http.StatusUnauthorized
 	query := r.URL.Query()
+	log.InfoByKv("url", "", "url", r.URL.String())
+
 	if len(query["token"]) != 0 && len(query["sendID"]) != 0 && len(query["platformID"]) != 0 {
 		if !utils.VerifyToken(query["token"][0], query["sendID"][0]) {
 			log.ErrorByKv("Token verify failed", "", "query", query)

@@ -1,10 +1,10 @@
 package group
 
 import (
-	pb "Open_IM/pkg/proto/group"
 	"Open_IM/pkg/common/config"
 	"Open_IM/pkg/common/log"
 	"Open_IM/pkg/grpc-etcdv3/getcdv3"
+	pb "Open_IM/pkg/proto/group"
 	"context"
 	"github.com/gin-gonic/gin"
 	"net/http"
