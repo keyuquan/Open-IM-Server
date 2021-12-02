@@ -1,10 +1,8 @@
 package config
 
 import (
-	"fmt"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
-	"os"
 	"path/filepath"
 	"runtime"
 )
@@ -166,20 +164,7 @@ func init() {
 	//bytes, err := ioutil.ReadFile(path + "/config/config.yaml")
 	// if we cd Open-IM-Server/src/utils and run go test
 	// it will panic cannot find config/config.yaml
-
-	//bytes, err := ioutil.ReadFile(Root + "/config/config.yaml")
-	//if err != nil {
-	//	panic(err)
-	//}
-
-	path, _ := os.Getwd()
-	//bytes, err := ioutil.ReadFile(path + "/config/config.yaml")
-	enPath := os.Getenv("CONFIG_FILE")
-	if enPath == "" {
-		enPath = path + "/config/config.yaml"
-	}
-	fmt.Println("s输出的地址是：" + enPath)
-	bytes, err := ioutil.ReadFile(enPath)
+	bytes, err := ioutil.ReadFile(Root + "/config/config.yaml")
 	if err != nil {
 		panic(err)
 	}

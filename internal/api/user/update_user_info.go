@@ -1,10 +1,10 @@
 package user
 
 import (
+	pbUser "Open_IM/pkg/proto/user"
 	"Open_IM/pkg/common/config"
 	"Open_IM/pkg/common/log"
 	"Open_IM/pkg/grpc-etcdv3/getcdv3"
-	pbUser "Open_IM/pkg/proto/user"
 	"context"
 	"github.com/gin-gonic/gin"
 	"net/http"
