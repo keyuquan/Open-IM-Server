@@ -5,7 +5,6 @@ import (
 	"Open_IM/internal/push/content_struct"
 	"Open_IM/pkg/common/config"
 	"Open_IM/pkg/common/constant"
-	"Open_IM/pkg/common/db/mysql_model/im_mysql_model"
 	http2 "Open_IM/pkg/common/http"
 	"Open_IM/pkg/common/log"
 	"Open_IM/pkg/grpc-etcdv3/getcdv3"
@@ -46,12 +45,6 @@ func (rpc *rpcChat) UserSendMsg(_ context.Context, pb *pbChat.UserSendMsgReq) (*
 	log.NewDebug(pb.OperationID, "rpc sendMsg come here", pb.String())
 	//if !utils.VerifyToken(pb.Token, pb.SendID) {
 	//	return returnMsg(&replay, pb, http.StatusUnauthorized, "token validate err,not authorized", "", 0)
-
-	err := im_mysql_model.FindRelationshipFromBlackList(pb.RecvID, pb.SendID)
-	if err == nil {
-		return returnMsg(&replay, pb, 203, "黑名单拒收", "", 0)
-	}
-
 	serverMsgID := GetMsgID(pb.SendID)
 	pbData := pbChat.WSToMsgSvrChatMsg{}
 	pbData.MsgFrom = pb.MsgFrom

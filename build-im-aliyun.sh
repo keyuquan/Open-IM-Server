@@ -68,9 +68,10 @@ services:
     container_name: open-im-server
     volumes:
       - ./logs:/Open-IM-Server/logs
+      - ./config/config.yaml:/Open-IM-Server/config/config.yaml
+      - ./db/sdk:/Open-IM-Server/db/sdk
       - ./script:/Open-IM-Server/script
       - ./bin:/Open-IM-Server/bin
-      - ./config:/Open-IM-Server/config
     restart: always
     environment:
       - CONFIG_FILE=../config/config.yaml
@@ -103,7 +104,7 @@ networks:
 EOF
 
 echo "压缩文件"
-tar -zcvf .build/all.tgz bin/* script/* .build/Dockerfile .build/docker-compose.yml config/*
+tar -zcvf .build/all.tgz bin/* script/*  db/* .build/Dockerfile .build/docker-compose.yml config/*
 #rm registerserver
 echo "scp 文件到服务器"
 scp .build/all.tgz aliyun-stone:/root/Open-IM-Server
