@@ -69,6 +69,7 @@ func (s *userServer) GetUserInfo(ctx context.Context, req *pbUser.GetUserInfoReq
 	//Obtain user information according to userID
 	if len(req.UserIDList) > 0 {
 		for _, userID := range req.UserIDList {
+			log.Info("获取用户信息", "userID", userID+"")
 			var userInfo pbUser.UserInfo
 			user, err := im_mysql_model.FindUserByUID(userID)
 			if err != nil {
