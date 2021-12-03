@@ -116,7 +116,7 @@ func (r *RPCServer) MsgToUser(_ context.Context, in *pbRelay.MsgToUserReq) (*pbR
 		}
 	}
 	if !tag {
-		log.NewError(in.OperationID, "push err ,no matched ws conn not in map", in.String())
+		log.Info(in.OperationID, "push err ,no matched ws conn not in map", in.String())
 	}
 	return &pbRelay.MsgToUserResp{
 		Resp: resp,
