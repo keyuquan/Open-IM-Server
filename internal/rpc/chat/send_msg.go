@@ -50,6 +50,10 @@ func (rpc *rpcChat) UserSendMsg(_ context.Context, pb *pbChat.UserSendMsgReq) (*
 	if err == nil {
 		return returnMsg(&replay, pb, 203, "黑名单拒收", "", 0)
 	}
+	if len(pb.SenderFaceURL) == 0 {
+		senderInfo, _ := im_mysql_model.FindUserByUID(pb.SendID)
+		pb.SenderFaceURL = senderInfo.Icon
+	}
 	serverMsgID := GetMsgID(pb.SendID)
 	pbData := pbChat.WSToMsgSvrChatMsg{}
 	pbData.MsgFrom = pb.MsgFrom
